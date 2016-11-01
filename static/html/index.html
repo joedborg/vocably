@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vocably</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="greeting">
+        <h1>Welcome to Vocably</h1>
+        <span>Select the most appropriate option for the word underlined in the sentence. </span>
+    </div>
+    <div id="question">
+        <!-- ko if: finished -->
+        <h3>You're all done!  You got <span data-bind="text: numberCorrect"></span> out of <span data-bind="text: questions().length"></span> correct.</h3>
+        <!-- /ko -->
+        <!-- ko ifnot: finished -->
+            <!-- ko if: questionViewing -->
+            <h3 data-bind="html: questionViewing().question"></h3>
+            <select data-bind="options: questionViewing().choices, value: questionAnswer, optionsCaption: '...'"></select>
+            <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</body>
+</html>
